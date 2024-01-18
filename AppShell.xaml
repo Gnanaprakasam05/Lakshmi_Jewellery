@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="LJ.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:LJ"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.BackgroundColor="#c3996b"
+    Shell.UnselectedColor="#999999"
+    x:Name="MyAppShell">
+   
+    <Shell.Style>
+         <Style TargetType="Tab">
+            <Setter Property="Shell.TabBarBackgroundColor" Value="#c3996b" />
+            <Setter Property="Shell.TabBarTitleColor" Value="White" />
+            <Setter Property="Shell.TabBarUnselectedColor" Value="#48382e" />
+        </Style>
+    </Shell.Style>
+
+    <ShellContent
+                x:Name="loginPage"
+                 Route="MainPage" 
+                 Shell.FlyoutBehavior="Disabled"/>
+
+    <TabBar Route="DashBoard" x:Name="dashBoard">
+        <Tab Title="Home" Icon="house.png">
+            <ShellContent x:Name="HomePage" />
+        </Tab>
+        <Tab Title="Profile"  Icon="user.png">
+            <ShellContent x:Name="ProfilePage" />
+        </Tab>
+    </TabBar>
+
+</Shell>

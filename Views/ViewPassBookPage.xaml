@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LJ.Views.ViewPassBookPage"
+             xmlns:model="clr-namespace:LJ.Models"
+             Title="View PassBook Details">
+    <ScrollView Orientation="Vertical">
+
+        <Grid Padding="0">
+            <StackLayout  VerticalOptions="Center" HorizontalOptions="Center">
+                <Image Aspect="AspectFit" Source="lj.png"/>
+            </StackLayout>
+            <Grid Margin="0,0,0,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <CollectionView ItemsSource="{Binding ViewPass}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout ItemSpacing="20" Orientation="Vertical"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Margin="15,15,15,0" CornerRadius="10" BorderColor="#b36800" BackgroundColor="#b36800" Padding="20">
+                                <StackLayout>
+                                    <HorizontalStackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                        <VerticalStackLayout Spacing="5" >
+                                            <Label Text="Name"
+                                                       TextColor="white" 
+                                                       FontSize="15"
+                                                       FontAttributes="Bold"/>
+                                            <Label Text="Code"
+                                                       TextColor="white"
+                                                       FontSize="15" 
+                                                       FontAttributes="Bold"/>
+                                            <Label Text="Scheme Name"
+                                                       TextColor="white" 
+                                                       FontSize="15" 
+                                                       FontAttributes="Bold"/>
+                                            <Label Text="Joining Date"
+                                                       TextColor="white" 
+                                                       FontSize="15" 
+                                                       FontAttributes="Bold"/>
+                                            <Label Text="Maturity Date"
+                                                       TextColor="white" 
+                                                       FontSize="15" 
+                                                       FontAttributes="Bold"/>
+                                        </VerticalStackLayout>
+                                        <VerticalStackLayout Spacing="5" Margin="5,0,0,0">
+                                            <Label Text=":" 
+                                                       TextColor="white"
+                                                       FontSize="15"
+                                                       FontAttributes="Bold"/>
+                                            <Label Text=":" 
+                                                       TextColor="white"
+                                                       FontSize="15"
+                                                       FontAttributes="Bold"/>
+                                            <Label Text=":" 
+                                                       TextColor="white"
+                                                       FontSize="15"
+                                                       FontAttributes="Bold"/>
+                                            <Label Text=":" 
+                                                       TextColor="white"
+                                                       FontSize="15"
+                                                       FontAttributes="Bold"/>
+                                            <Label Text=":" 
+                                                       TextColor="white"
+                                                       FontSize="15"
+                                                       FontAttributes="Bold"/>
+                                        </VerticalStackLayout>
+                                        <VerticalStackLayout Spacing="5" Margin="5,0,0,0">
+                                            <Label Text="{Binding Name}"
+                                                       TextColor="white" 
+                                                       FontSize="15"
+                                                       FontAttributes="Bold"/>
+                                            <Label Text="{Binding Code}"
+                                                       TextColor="white"
+                                                       FontSize="15" 
+                                                       FontAttributes="Bold"/>
+                                            <Label Text="{Binding SchemeName}"
+                                                       TextColor="white"
+                                                       FontSize="15"
+                                                       FontAttributes="Bold"/>
+                                            <Label Text="{Binding JoiningData}"
+                                                       TextColor="white"
+                                                       FontSize="15"
+                                                       FontAttributes="Bold"/>
+                                            <Label Text="{Binding MaturityData}"
+                                                       TextColor="white"
+                                                       FontSize="15"
+                                                       FontAttributes="Bold"/>
+                                        </VerticalStackLayout>
+                                    </HorizontalStackLayout>
+                                </StackLayout>
+                            </Frame>
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+
+                <StackLayout Grid.Row="1" Margin="0,8,0,0">
+                    <CollectionView ItemsSource="{Binding ViewPassBook}">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout  Orientation="Vertical"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame  BorderColor="#48382e" BackgroundColor="#48382e" Margin="30,8,30,8" HasShadow="True" Padding="15">
+
+                                    <Grid RowSpacing="12" ColumnSpacing="15">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackLayout  Grid.Column="0" Grid.Row="0">
+                                            <HorizontalStackLayout Spacing="8">
+                                                <VerticalStackLayout>
+                                                    <Label Text="Ins No"
+                                                       TextColor="white" 
+                                                       FontSize="18" 
+                                                       FontAttributes="Bold"/>
+                                                </VerticalStackLayout>
+                                                <VerticalStackLayout >
+                                                    <Label Text="{Binding InsNo}" 
+                                                       TextColor="white" 
+                                                       FontSize="18"
+                                                       FontAttributes="Bold"/>
+                                                </VerticalStackLayout>
+                                            </HorizontalStackLayout>
+                                        </StackLayout>
+
+                                        <StackLayout Grid.Column="0" Grid.Row="1" HorizontalOptions="StartAndExpand" Margin="0,2,0,0">
+                                            <HorizontalStackLayout>
+                                                <VerticalStackLayout Spacing="10" >
+                                                    <Label Text="Rcpt No."
+                                                       TextColor="white" 
+                                                       FontSize="14"
+                                                       FontAttributes="Bold"/>
+                                                    <Label Text="Rcpt Date"
+                                                       TextColor="white"
+                                                       FontSize="14" 
+                                                       FontAttributes="Bold"/>
+                                                    <Label Text="Rate"
+                                                       TextColor="white" 
+                                                       FontSize="14" 
+                                                       FontAttributes="Bold"/>
+                                                </VerticalStackLayout>
+                                                <VerticalStackLayout  Spacing="10">
+                                                    <Label Text=" : " 
+                                                       TextColor="white"
+                                                       FontSize="14"
+                                                       FontAttributes="Bold"/>
+                                                    <Label Text=" : " 
+                                                       TextColor="white"
+                                                       FontSize="14"
+                                                       FontAttributes="Bold"/>
+                                                    <Label Text=" : " 
+                                                       TextColor="white" 
+                                                       FontSize="14"
+                                                       FontAttributes="Bold"/>
+
+                                                </VerticalStackLayout>
+                                                <VerticalStackLayout  Spacing="10" >
+                                                    <Label Text="{Binding ReceiptNo}"
+                                                       TextColor="white" 
+                                                       FontSize="14"
+                                                       FontAttributes="Bold"/>
+                                                    <Label Text="{Binding ReceiptDate}"
+                                                       TextColor="white"
+                                                       FontSize="14" 
+                                                       FontAttributes="Bold"/>
+                                                    <Label Text="{Binding Rate}"
+                                                       TextColor="white"
+                                                       FontSize="14"
+                                                       FontAttributes="Bold"/>
+                                                </VerticalStackLayout>
+                                            </HorizontalStackLayout>
+                                        </StackLayout>
+                                        <StackLayout Grid.Column="1" Grid.Row="1"  HorizontalOptions="EndAndExpand" Margin="0,2,0,0">
+                                            <HorizontalStackLayout >
+                                                <VerticalStackLayout  Spacing="10">
+                                                    <Label Text="Payment" 
+                                                       TextColor="white"  
+                                                       FontSize="14"
+                                                       FontAttributes="Bold"/>
+                                                    <Label Text="{Binding TitleAmount_Weight}" 
+                                                       TextColor="white" 
+                                                       FontSize="14"
+                                                       FontAttributes="Bold"/>
+                                                    <Label Text="Total Weight" 
+                                                       TextColor="white" 
+                                                       FontSize="14" 
+                                                       FontAttributes="Bold"/>
+                                                    <!--<Label Text="Total Weight" TextColor="Gray"  FontSize="16" FontAttributes="Bold"/>-->
+                                                </VerticalStackLayout>
+                                                <VerticalStackLayout  Spacing="10" Margin="0,0,0,0">
+                                                    <Label Text=" : "
+                                                       TextColor="white" 
+                                                       FontSize="14"
+                                                       FontAttributes="Bold"/>
+                                                    <Label Text=" : " 
+                                                       TextColor="white" 
+                                                       FontSize="14"
+                                                       FontAttributes="Bold"/>
+                                                    <Label Text=" : " 
+                                                       TextColor="white" 
+                                                       FontSize="14"
+                                                       FontAttributes="Bold"/>
+                                                    <!--<Label Text="{Binding Title_Colon}" TextColor="Gray"  FontSize="16" FontAttributes="Bold"/>-->
+                                                </VerticalStackLayout>
+                                                <VerticalStackLayout  Spacing="10" Margin="0,0,0,0">
+                                                    <Label Text="{Binding PaymentType}" LineBreakMode="TailTruncation" 
+                                                       TextColor="white" 
+                                                       FontSize="14"
+                                                       FontAttributes="Bold"/>
+                                                    <Label Text="{Binding DueAmount}" 
+                                                       TextColor="white" 
+                                                       FontSize="14"
+                                                       FontAttributes="Bold"/>
+                                                    <Label Text="{Binding TotalWeight}"
+                                                       TextColor="white" 
+                                                       FontSize="14"
+                                                       FontAttributes="Bold"/>
+                                                    <!--<Label Text="{Binding Weight}" TextColor="Gray"  FontSize="16" FontAttributes="Bold"/>-->
+                                                </VerticalStackLayout>
+                                            </HorizontalStackLayout>
+                                        </StackLayout>
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+
+
+
+            </Grid>
+        </Grid>
+
+
+    
+    </ScrollView>
+</ContentPage>

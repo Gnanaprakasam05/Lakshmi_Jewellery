@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LJ.Views.HomePage"
+             xmlns:models="clr-namespace:LJ.Models"   
+             xmlns:model ="clr-namespace:LJ.Models"
+             Title="Home">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add item" Clicked="LogoutNavigation"
+                     IconImageSource="poweroff.png" />
+    </ContentPage.ToolbarItems>
+
+
+    <RefreshView IsRefreshing="{Binding IsBusy}"  Command="{Binding HomeRefreshCommand}" RefreshColor="#48382e">
+        <ScrollView Orientation="Vertical">
+
+            <Grid Padding="0">
+                <StackLayout  VerticalOptions="Center" HorizontalOptions="Center">
+                    <Image Aspect="AspectFit" Source="lj.png"/>
+                </StackLayout>
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="Center" Margin="0,5,0,0">
+
+                        <CollectionView ItemsSource="{Binding HomeData}" ItemsLayout="VerticalGrid,1" SelectionMode="None" >
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="model:Index">
+                                    <HorizontalStackLayout Margin="0,20,0,0">
+                                        <Frame BorderColor="#48382e" BackgroundColor="#48382e" Margin="2" Padding="15" HasShadow="True" WidthRequest="350">
+                                            <StackLayout>
+                                                <StackLayout>
+                                                    <StackLayout  Orientation="Horizontal">
+                                                        <Frame HorizontalOptions="Start" WidthRequest="40" HeightRequest="40" CornerRadius="30" BackgroundColor="#c3996b" BorderColor="#c3996b" Margin="20,0,0,0" Padding="0">
+                                                            <Frame.GestureRecognizers>
+                                                                <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped"/>
+                                                            </Frame.GestureRecognizers>
+                                                            <Label Text="{Binding Letter}"  
+                                                                    FontSize="30" 
+                                                                    FontAttributes="Bold"
+                                                                    HorizontalTextAlignment="Center"
+                                                                    TextColor="#48382e" 
+                                                                    VerticalTextAlignment="Center"/>
+                                                        </Frame>
+                                                        <StackLayout VerticalOptions="Center" Margin="10,0,0,0">
+                                                            <Label Text="{Binding Name}"
+                                                            TextColor="white"
+                                                            FontSize="18"
+                                                            FontAttributes="Bold"/>
+                                                        </StackLayout>
+                                                    </StackLayout>
+                                                    
+                                                    
+                                                    <BoxView Color="#d9d9d9" 
+                                                            Margin="0,15,0,0"
+                                                            HeightRequest="2"
+                                                            HorizontalOptions="Fill" />
+
+                                                    <Frame Padding="0" Margin="0,15,0,0" CornerRadius="0" BackgroundColor="#48382e" BorderColor="#48382e">
+                                                        <Frame.GestureRecognizers>
+                                                            <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped"/>
+                                                        </Frame.GestureRecognizers>
+                                                        <CollectionView ItemsSource="{Binding CustomerChitList}" ItemsLayout="VerticalGrid,1"   x:Name="Custom_List" SelectionMode="None"  SelectionChanged="CollectionView_SelectionChanged">
+                                                            <CollectionView.ItemTemplate>
+                                                                <DataTemplate x:DataType="model:CustomerChitList">
+                                                                    <Grid ColumnSpacing="5" RowSpacing="8">
+                                                                        <Grid.RowDefinitions>
+                                                                            <RowDefinition Height="*"/>
+                                                                        </Grid.RowDefinitions>
+                                                                        <Grid.ColumnDefinitions>
+                                                                            <ColumnDefinition Width="4.8*"/>
+                                                                            <ColumnDefinition Width="2.5*"/>
+                                                                            <ColumnDefinition Width="2.7*"/>
+                                                                        </Grid.ColumnDefinitions>
+                                                                        <StackLayout Grid.Column="0" VerticalOptions="Start" HorizontalOptions="StartAndExpand">
+                                                                            <Label Text="{Binding ChitSchemeName}" 
+                                                                                   TextColor="white" 
+                                                                                   FontSize="14" 
+                                                                                   FontAttributes="Bold"
+                                                                                   LineBreakMode="TailTruncation"/>
+
+                                                                        </StackLayout>
+                                                                        <StackLayout Grid.Column="1" VerticalOptions="Start" HorizontalOptions="StartAndExpand" >
+
+                                                                            <Label Text="{Binding DueDate}" 
+                                                                                    TextColor="white" 
+                                                                                    FontSize="14" 
+                                                                                    FontAttributes="Bold"/>
+                                                                        </StackLayout>
+                                                                        <StackLayout Grid.Column="2" VerticalOptions="Start" HorizontalOptions="StartAndExpand" >
+
+                                                                            <Label Text="{Binding PaidAmount ,StringFormat='₹{0}'}" 
+                                                                                   TextColor="white" 
+                                                                                   FontSize="14" 
+                                                                                   FontAttributes="Bold"/>
+                                                                        </StackLayout>
+
+                                                                    </Grid>
+                                                                </DataTemplate>
+                                                            </CollectionView.ItemTemplate>
+                                                        </CollectionView>
+
+                                                      
+                                                    </Frame>
+                                                </StackLayout>
+
+                                               
+                                            </StackLayout>
+                                            <Frame.GestureRecognizers>
+                                                <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped"/>
+                                            </Frame.GestureRecognizers>
+                                        </Frame>
+                                    </HorizontalStackLayout>
+
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+
+                            <CollectionView.Footer>
+                                <Grid Padding="6" IsVisible="{Binding IsBusy}">
+                                    <!-- set the footer to have a zero height when invisible -->
+                                    <Grid.Triggers>
+                                        <Trigger TargetType="Grid" Property="IsVisible" Value="False">
+                                            <Setter Property="HeightRequest" Value="0" />
+                                        </Trigger>
+                                    </Grid.Triggers>
+                                    <!-- the loading content -->
+                                    <!--<Label Text="Loading..." TextColor="Gray" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" />-->
+
+                                    <ActivityIndicator IsRunning="{Binding IsBusy}"  Color="Orange" />
+                                </Grid>
+                            </CollectionView.Footer>
+                        </CollectionView>
+
+                    </StackLayout>
+                </Grid>
+            </Grid>
+        
+        </ScrollView>
+    </RefreshView>
+</ContentPage>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LJ.Views.PayNowPage"
+              xmlns:model ="clr-namespace:LJ.Models" 
+             Title="PayNow Details" >
+    <ScrollView  Orientation="Vertical" >
+
+        <Grid Padding="0">
+            <StackLayout  VerticalOptions="Center" HorizontalOptions="Center">
+                <Image Aspect="AspectFit" Source="lj.png"/>
+            </StackLayout>
+
+            <Grid Margin="0,0,0,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <CollectionView ItemsSource="{Binding PayNowData}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame CornerRadius="10" BorderColor="#b36800" BackgroundColor="#b36800" Margin="15,15,15,0" Padding="20" >
+                                <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                                    <HorizontalStackLayout HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" Spacing="5" >
+                                        <VerticalStackLayout Spacing="5" >
+                                            <Label Text="Name"
+                                   TextColor="white" 
+                                   FontSize="15"
+                                   FontAttributes="Bold"/>
+                                            <Label Text="Code"
+                                   TextColor="white"
+                                   FontSize="15" 
+                                   FontAttributes="Bold"/>
+                                            <Label Text="Scheme Name"
+                                   TextColor="white" 
+                                   FontSize="15" 
+                                   FontAttributes="Bold"/>
+
+                                        </VerticalStackLayout>
+                                        <VerticalStackLayout Spacing="5" >
+                                            <Label Text=":" 
+                                   TextColor="white"
+                                   FontSize="15"
+                                   FontAttributes="Bold"/>
+                                            <Label Text=":" 
+                                   TextColor="white"
+                                   FontSize="15"
+                                   FontAttributes="Bold"/>
+                                            <Label Text=":" 
+                                   TextColor="white"
+                                   FontSize="15"
+                                   FontAttributes="Bold"/>
+
+                                        </VerticalStackLayout>
+                                        <VerticalStackLayout Spacing="5" >
+                                            <Label Text="{Binding Name}"
+                                   TextColor="white" 
+                                   FontSize="15"
+                                   FontAttributes="Bold"/>
+                                            <Label Text="{Binding Code}"
+                                   TextColor="white"
+                                   FontSize="15" 
+                                   FontAttributes="Bold"/>
+                                            <Label Text="{Binding SchemeName}"
+                                   TextColor="white"
+                                   FontSize="15"
+                                   FontAttributes="Bold"/>
+
+                                        </VerticalStackLayout>
+                                    </HorizontalStackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <StackLayout Grid.Row="1"  Margin="0,10,0,0">
+
+                    <CollectionView ItemsSource="{Binding PayNow}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate >
+                                <Frame   WidthRequest="335" HeightRequest="175" BorderColor="#48382e" BackgroundColor="#48382e" Margin="8" HasShadow="True">
+
+                                    <StackLayout>
+                                        <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                                            <VerticalStackLayout Spacing="5" >
+                                                <Label Text="Due No" TextColor="white"  FontSize="14" FontAttributes="Bold"/>
+                                                <Label Text="Due Date" TextColor="white"  FontSize="14" FontAttributes="Bold"/>
+                                                <Label Text="Due amount" TextColor="white"  FontSize="14" FontAttributes="Bold"/>
+
+                                            </VerticalStackLayout>
+                                            <VerticalStackLayout Spacing="5" Margin="10,0,0,0">
+                                                <Label Text=": " TextColor="white"  FontSize="14" FontAttributes="Bold"/>
+                                                <Label Text=": " TextColor="white"  FontSize="14" FontAttributes="Bold"/>
+                                                <Label Text=": " TextColor="white"  FontSize="14" FontAttributes="Bold"/>
+
+                                            </VerticalStackLayout>
+                                            <VerticalStackLayout Spacing="5" Margin="10,0,0,0">
+                                                <Label Text="{Binding Name}" TextColor="white"  FontSize="14" FontAttributes="Bold"/>
+                                                <Label Text="{Binding Code}" TextColor="white"  FontSize="14" FontAttributes="Bold"/>
+                                                <Label Text="{Binding DueAmount_Weight}" TextColor="white"  FontSize="14" FontAttributes="Bold"/>
+
+                                            </VerticalStackLayout>
+                                        </HorizontalStackLayout>
+
+                                        <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Margin="0,15,0,0">
+                                            <Button
+                                          Clicked="RazorPay"
+                                          Text="PAY NOW" 
+                                          TextColor="White" 
+                                          WidthRequest="100"
+                                          HeightRequest="50"
+                                          FontAttributes="Bold"
+                                          FontSize="12" 
+                                          BackgroundColor="#ff9500" />
+                                        </HorizontalStackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                </StackLayout>
+
+            </Grid>
+        </Grid>
+
+
+
+  
+    </ScrollView>
+</ContentPage>
