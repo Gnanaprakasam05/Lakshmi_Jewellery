@@ -1,22 +1,14 @@
 ﻿using LJ.Models;
 using LJ.Services;
-using Microsoft.Maui.Controls.Internals;
+using Microsoft.VisualBasic;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Globalization;
-using System.Linq;
-using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace LJ
-    .ViewModels
+namespace LJ.ViewModels
 {
-   
+
     public class MyRelationViewModel : BaseViewModel
     {
         private readonly HttpServices httpServices;
@@ -34,16 +26,23 @@ namespace LJ
 
 
         private string ID;
+
         public string Title1 = "Due Weight";
 
         public string Title2 = "Due Amount";
         public bool IsHomeRefreshing { get; set; }
+
+        public string RelationID { get; set; }
         public ObservableCollection<MyRelationModel> RelationData { get; set; } = new ObservableCollection<MyRelationModel>();
 
+        public ObservableCollection<Datum> PayNow { get; set; } 
         public MyRelationViewModel(string id = null, HttpServices _httpServices = null) 
         {
 
             ID = id;
+
+            PayNow = new ObservableCollection<Datum>();
+
             httpServices = _httpServices;
         }
 
@@ -175,6 +174,87 @@ namespace LJ
 
             
 
+        }
+
+        public async Task<ObservableCollection<Datum>> GetChitCustomerCollectionDueListData( string Relation_ID)
+        {
+
+            try
+            {
+                PayNow.Clear();
+                try
+                {
+                    var current = Connectivity.NetworkAccess;
+
+                    if (current == NetworkAccess.Internet)
+                    {
+                        HttpContent formcontent = null;
+
+                        string MobileNumber = Preferences.Get("MobileNumber", "");
+
+                        var formcontent1 = new FormUrlEncodedContent(new[]
+                                      {
+                                    new KeyValuePair<string,string>("mobile_no",MobileNumber),
+
+                            });
+                        var httpClient = httpServices.HttpClient;
+                        httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Preferences.Get("accessToken", string.Empty));
+                        var request = await httpClient.PostAsync(ApiUrl.Api + "api/chit_customer_collection_due_list", formcontent1);
+                        var jsonResult = await request.Content.ReadAsStringAsync();
+                        var Result = JsonConvert.DeserializeObject<ChitCustomerCollectionDueListModel>(jsonResult);
+
+
+                        foreach (var data in Result.Data.OrderBy(x => x.DueNo).ToList())
+                        {
+
+
+                            if (data.Id == Relation_ID)
+                            {
+                               
+                                if (data.DueWeight == "0.000")
+                                {
+
+                                    PayNow.Add(new Datum
+                                    {
+                                        DueNo = data.DueNo,
+                                        PaidAmount = data.PaidAmount,
+                                        DueDate = data.DueDate,
+
+                                        ChitSchemeId = data.ChitSchemeId,
+                                        CollectionId = data.CollectionId,
+                                        CustomerId = data.CustomerId,
+                                        Id = data.Id,
+
+                                    });
+                                }
+                                if (data.DueAmount == "0.00")
+                                {
+
+
+                                    PayNow.Add(new Datum
+                                    {
+                                        DueNo = data.DueNo,
+                                        PaidAmount = data.PaidAmount,
+                                        DueDate = data.DueDate,
+                                    });
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+                catch (Exception ex)
+                {
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return PayNow;
         }
     }
 }

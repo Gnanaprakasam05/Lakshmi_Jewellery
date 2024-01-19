@@ -43,7 +43,7 @@ namespace LJ.ViewModels
         private static string show_only_current_chit = "1";
         public string RelationID { get; set; }
         public ObservableCollection<PayNowDataModel> PayNowData { get; set; } = new ObservableCollection<PayNowDataModel>();
-        public ObservableCollection<Value> PayNow { get; set; } = new ObservableCollection<Value>();
+        public ObservableCollection<Datum> PayNow { get; set; } = new ObservableCollection<Datum>();
         public string DateFormate1 { get; set; }
         public bool IsPaynowRefreshing { get; set; }
 
@@ -80,7 +80,7 @@ namespace LJ.ViewModels
                 try
                 {
 
-                     string ID = Preferences.Get("CustomerID", string.Empty);
+                     //string ID = Preferences.Get("CustomerID", string.Empty);
                     var current = Connectivity.NetworkAccess;
 
                     if (current == NetworkAccess.Internet)
@@ -94,7 +94,7 @@ namespace LJ.ViewModels
                                     new KeyValuePair<string,string>("PageSize",PageSize),
                                     new KeyValuePair<string,string>("dataType",dataType),
                                      new KeyValuePair<string,string>("is_search",is_search),
-                                      new KeyValuePair<string,string>("search",ID),
+                                      new KeyValuePair<string,string>("search",Preferences.Get("CustomerID", string.Empty)),
                                        new KeyValuePair<string,string>("searchField",searchField1),
                                        new KeyValuePair<string,string>("show_only_current_chit",show_only_current_chit),
                             });
@@ -149,7 +149,7 @@ namespace LJ.ViewModels
 
 
         }
-        public async Task GetChitCustomerCollectionDueList( )
+        public async Task<ObservableCollection<Datum>> GetChitCustomerCollectionDueList( )
         {
 
             try
@@ -189,37 +189,30 @@ namespace LJ.ViewModels
 
                                 if (data.DueWeight == "0.000")
                                 {
-                                    Preferences.Set("DueAmount", data.PaidAmount);
-                                    Preferences.Set("ChitSchemeId", data.ChitSchemeId);
-                                    Preferences.Set("CollectionId", data.CollectionId);
-                                    Preferences.Set("CustomerId", data.CustomerId);
-                                    Preferences.Set("DueNo", data.DueNo);
-                                    Preferences.Set("Id", data.Id);
+                                    
 
-                                    PayNow.Add(new Value
+                                    PayNow.Add(new Datum
                                     {
-                                        Name = data.DueNo,
-                                        DueAmount_Weight = data.PaidAmount,
-                                        Code = DateFormate1,
+                                        DueNo = data.DueNo,
+                                        PaidAmount = data.PaidAmount,
+                                        DueDate = DateFormate1,
+
+                                        ChitSchemeId = data.ChitSchemeId,
+                                        CollectionId = data.CollectionId,
+                                        CustomerId = data.CustomerId,
+                                        Id = data.Id,
 
                                     });
                                 }
                                 if (data.DueAmount == "0.00")
                                 {
-                                    Preferences.Set("DueAmount", data.PaidAmount);
-                                    Preferences.Set("ChitSchemeId", data.ChitSchemeId);
-                                    Preferences.Set("CollectionId", data.CollectionId);
-                                    Preferences.Set("CustomerId", data.CustomerId);
-                                    Preferences.Set("DueNo", data.DueNo);
-                                    Preferences.Set("Id", data.Id);
+                                    
 
-                                    PayNow.Add(new Value
+                                    PayNow.Add(new Datum
                                     {
-                                        Name = data.DueNo,
-                                        DueAmount_Weight = data.PaidAmount,
-                                        Code = DateFormate1,
-
-
+                                        DueNo = data.DueNo,
+                                        PaidAmount = data.PaidAmount,
+                                        DueDate = DateFormate1,
                                     });
                                 }
                             }
@@ -238,7 +231,7 @@ namespace LJ.ViewModels
 
             }
 
-
+            return PayNow;
         }
     }
 }

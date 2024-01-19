@@ -230,7 +230,7 @@ window.location.href = urlName;
         var jsonResult = await request.Content.ReadAsStringAsync();
         var result = JsonConvert.DeserializeObject<RazorpayModel>(jsonResult);
 
-        Preferences.Set("ID", result.Id);
+        Preferences.Set("ResultID", result.Id);
         Preferences.Set("Amount", result.Amount);
         Preferences.Set("Currency", result.Currency);
         Preferences.Set("Receipt", result.Receipt);
@@ -242,7 +242,7 @@ window.location.href = urlName;
         string Amount = Preferences.Get("Amount", string.Empty);
         string Email = Preferences.Get("Email", string.Empty); ;
         string key = "rzp_test_Gyt3Usf1nNi9Rr";
-        string order_id = Preferences.Get("ID", string.Empty);
+        string order_id = Preferences.Get("ResultID", string.Empty);
         string Currency = Preferences.Get("Currency", string.Empty);
         string Mobile = Preferences.Get("Mobile", string.Empty);
         var Status = Preferences.Get("Status", string.Empty);
@@ -253,61 +253,7 @@ window.location.href = urlName;
         var res = await myWebView.EvaluateJavaScriptAsync(
          $"openpaymentscreen('{SendName},{Amount},{Email},{key},{order_id},{Currency},{Mobile},{ApiSecret}')");
 
-        //if (res == "Success")
-        //{
-        //    await DisplayAlert("message", res, "OK");
-        //}
-        //else
-        //{
-        //    await DisplayAlert("Error"," ", "OK");
-        //}
-
-
-
-        //await DisplayAlert("Message", res, "Ok");
-        //getData(res);
-
-        //if(Status == "created")
-        //{
-
-        //    var ChitSchemeId = Preferences.Get("ChitSchemeId", string.Empty);
-        //    var CollectionId = Preferences.Get("CollectionId", string.Empty);
-        //    var CustomerId = Preferences.Get("CustomerId", string.Empty);
-        //    var DueNo = Preferences.Get("DueNo", string.Empty);
-        //    var Id = Preferences.Get("Id", string.Empty);
-
-
-
-
-
-
-
-        //    Dictionary<string, string> formData = new Dictionary<string, string>
-        //    {
-        //        {"txn_no", order_id},
-        //        {"card_holder_name", SendName},
-        //        {"paid_amount", Amount},
-        //        {"transaction_details[0][chit_scheme_id]", ChitSchemeId},
-        //        {"transaction_details[0][collection_id]", CollectionId},
-        //        {"transaction_details[0][customer_id]", CustomerId},
-        //        {"transaction_details[0][due_no]", DueNo},
-        //        {"transaction_details[0][id]", Id}
-        //    };
-
-
-        //    var content = new FormUrlEncodedContent(formData);
-
-
-        //        var storeHttpClient = _httpClientFactory.CreateClient();
-        //       storeHttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Preferences.Get("accessToken", string.Empty));
-        //        var storeRequest = await storeHttpClient.PostAsync(ApiUrl.Api + "api/store_payment_details", content);
-        //        var storeJsonResult = await storeRequest.Content.ReadAsStringAsync();
-        //        var Result = JsonConvert.DeserializeObject<ResponseStorePaymentDetails>(storeJsonResult);
-
-
-        //}
-
-        //await Navigation.PopAsync();
+       
 
     }
     private async void RazorpaySuccessPayment(object sender, WebNavigatingEventArgs e)
@@ -328,8 +274,8 @@ window.location.href = urlName;
             var CollectionId = Preferences.Get("CollectionId", string.Empty);
             var CustomerId = Preferences.Get("CustomerId", string.Empty);
             var DueNo = Preferences.Get("DueNo", string.Empty);
-            var Id = Preferences.Get("Id", string.Empty);
-            var order_id = Preferences.Get("ID", string.Empty);
+            var Id = Preferences.Get("paynowId", string.Empty);
+            var order_id = Preferences.Get("ResultID", string.Empty);
             var SendName = Preferences.Get("CustomerName", string.Empty);
             var Amount = Preferences.Get("Amount", string.Empty);
             Dictionary<string, string> formData = new Dictionary<string, string>

@@ -74,6 +74,8 @@ namespace LJ.Models
 
         [JsonProperty("total_weight_all")]
         public string TotalWeightAll { get; set; }
+
+        public string DueDATE { get; set; }
     }
 
 }

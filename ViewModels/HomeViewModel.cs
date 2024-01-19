@@ -101,7 +101,7 @@ namespace LJ.ViewModels
             IsBusy = false;
         });
         int sum = 0;
-        public async Task GetProfileCustomerList( )
+        public async Task GetProfileCustomerList()
         {
         
             string MobileNumber = Preferences.Get("MobileNumber", "");
@@ -152,9 +152,6 @@ namespace LJ.ViewModels
         public async void GetCustomerList()
         {
           
-
-     
-
             string MobileNumber = Preferences.Get("MobileNumber", "");
 
             try
@@ -196,14 +193,11 @@ namespace LJ.ViewModels
 
                                 DateTime date1 = DateTime.Parse(data.CustomerChitList[i].DueDate);
                                 var DueDate = date1.ToString("dd-MM-yyyy");
-
-
-
-                                double amount = Convert.ToDouble(data.CustomerChitList[i].PaidAmount);
-                                int PaidValue = (int)amount;
-
+            
                                 data.CustomerChitList[i].DueDate = DueDate;
-                                data.CustomerChitList[i].PaidAmount = PaidValue.ToString("N2");
+                            
+                                string modifiedString = RemoveDecimalValues(data.CustomerChitList[i].PaidAmount);
+                                data.CustomerChitList[i].PaidAmount =modifiedString;
                             }
 
 
@@ -236,12 +230,21 @@ namespace LJ.ViewModels
             {
              
             }
+            static string RemoveDecimalValues(string input)
+            {
+                int decimalIndex = input.IndexOf('.');
+
+                if (decimalIndex != -1)
+                {
+                    return input.Substring(0, decimalIndex);
+                }
+
+                return input;
+            }
 
 
 
-          
 
-        
-    }
+        }
 }
 }

@@ -96,10 +96,10 @@
 
                                             </VerticalStackLayout>
                                             <VerticalStackLayout Spacing="5" Margin="10,0,0,0">
-                                                <Label Text="{Binding Name}" TextColor="white"  FontSize="14" FontAttributes="Bold"/>
-                                                <Label Text="{Binding Code}" TextColor="white"  FontSize="14" FontAttributes="Bold"/>
-                                                <Label Text="{Binding DueAmount_Weight}" TextColor="white"  FontSize="14" FontAttributes="Bold"/>
-
+                                                <Label Text="{Binding DueNo}" TextColor="white"  FontSize="14" FontAttributes="Bold"/>
+                                                <Label Text="{Binding DueDate}" TextColor="white"  FontSize="14" FontAttributes="Bold"/>
+                                                <Label Text="{Binding PaidAmount}" TextColor="white"  FontSize="14" FontAttributes="Bold"/>
+                                                
                                             </VerticalStackLayout>
                                         </HorizontalStackLayout>
 

@@ -21,8 +21,6 @@ public partial class HomePage : ContentPage
 
         httpServices = httpClientFactory;
 
-
-
         BindingContext = viewModel = new HomeViewModel(httpServices);
          
     }
@@ -32,9 +30,6 @@ public partial class HomePage : ContentPage
     {
         base.OnAppearing();
 
-
-
-     
             viewModel.GetCustomerList();
       
             viewModel.NetworkError();
@@ -59,7 +54,7 @@ public partial class HomePage : ContentPage
         return CloseApp;
     }
 
-        public async void LogoutNavigation(Object sender, EventArgs e)
+    private async void LogoutNavigation(Object sender, EventArgs e)
         {
             bool result = await this.DisplayAlert("Log Out!", "Do you want to Log Out?", "Yes", "No");
             if (result)
@@ -78,7 +73,6 @@ public partial class HomePage : ContentPage
         var view = (Index)button.BindingContext;
         await Navigation.PushAsync(new MyRelationPage(view.Id,httpServices));
     }
-
     private async void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
 

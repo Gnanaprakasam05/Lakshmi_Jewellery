@@ -31,7 +31,7 @@
                             <CollectionView.ItemTemplate>
                                 <DataTemplate x:DataType="model:Index">
                                     <HorizontalStackLayout Margin="0,20,0,0">
-                                        <Frame BorderColor="#48382e" BackgroundColor="#48382e" Margin="2" Padding="15" HasShadow="True" WidthRequest="350">
+                                        <Frame BorderColor="#48382e" BackgroundColor="#48382e" Margin="2" Padding="10" HasShadow="True" WidthRequest="350">
                                             <StackLayout>
                                                 <StackLayout>
                                                     <StackLayout  Orientation="Horizontal">
@@ -91,7 +91,7 @@
                                                                                     FontSize="14" 
                                                                                     FontAttributes="Bold"/>
                                                                         </StackLayout>
-                                                                        <StackLayout Grid.Column="2" VerticalOptions="Start" HorizontalOptions="StartAndExpand" >
+                                                                        <StackLayout Grid.Column="2" VerticalOptions="Start" HorizontalOptions="EndAndExpand" >
 
                                                                             <Label Text="{Binding PaidAmount ,StringFormat='₹{0}'}" 
                                                                                    TextColor="white" 

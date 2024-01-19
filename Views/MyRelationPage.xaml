@@ -6,9 +6,9 @@
              xmlns:model="clr-namespace:LJ.Models"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit" 
              Title="My Relation">
-    <RefreshView IsRefreshing="{Binding IsBusy}" Command="{Binding RefreshData}" RefreshColor="#48382e"> 
-    <ScrollView Orientation="Vertical">
-
+    
+     <RefreshView IsRefreshing="{Binding IsBusy}" Command="{Binding RefreshData}" RefreshColor="#48382e">
+        <ScrollView Orientation="Vertical">
             <Grid Padding="0">
                 <StackLayout  VerticalOptions="Center" HorizontalOptions="Center">
                     <Image Aspect="AspectFit" Source="lj.png"/>
@@ -18,135 +18,107 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <StackLayout  Orientation="Horizontal" HorizontalOptions="Center"  Margin="0,25,0,0">
+                    <StackLayout  Orientation="Horizontal" HorizontalOptions="Center">
                         <CollectionView ItemsSource="{Binding RelationData}" x:Name="MyCollectionViews">
                             <CollectionView.ItemsLayout>
                                 <LinearItemsLayout ItemSpacing="4" Orientation="Vertical"/>
                             </CollectionView.ItemsLayout>
                             <CollectionView.ItemTemplate>
                                 <DataTemplate x:DataType="model:MyRelationModel">
-                                    <HorizontalStackLayout  Margin="0,0,0,10">
-                                        <Frame BorderColor="#48382e" BackgroundColor="#48382e" Margin="0" HasShadow="True">
-                                            <StackLayout>
-                                                <StackLayout>
-                                                    <StackLayout  Orientation="Horizontal">
-                                                        <Frame HorizontalOptions="Start" WidthRequest="40" HeightRequest="40" CornerRadius="30" BackgroundColor="#c3996b" BorderColor="#c3996b" Margin="20,0,0,0">
-                                                            <Image Source="rupee.png" 
-                                                       HeightRequest="20"
-                                                       WidthRequest="20">
-                                                                <Image.Behaviors>
-                                                                    <toolkit:IconTintColorBehavior TintColor="#48382e"/>
-                                                                </Image.Behaviors>
-                                                            </Image>
-                                                        </Frame>
-                                                        <StackLayout>
-                                                            <Label Text="{Binding ChitSchemeName}"
-                                                       TextColor="white"
-                                                       FontAttributes="Bold"
-                                                       FontSize="18" 
-                                                       Padding="0" 
-                                                       Margin="20,5,0,0"/>
-                                                        </StackLayout>
-                                                    </StackLayout>
-                                                    <BoxView Color="#d9d9d9" 
-                                                 Margin="0,15,0,0"
-                                                 HeightRequest="2"
-                                                 HorizontalOptions="Fill" />
-                                                </StackLayout>
-                                                <StackLayout Margin="0,15,0,0">
-                                                    <Grid ColumnSpacing="30">
+
+                                    <Frame BorderColor="#48382e" BackgroundColor="#48382e" Margin="15,15,15,0" HasShadow="False">
+                                        <Grid ColumnSpacing="10" RowSpacing="10" Padding="0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="3*"/>
+                                                <RowDefinition Height="5"/>
+                                                <RowDefinition Height="3*"/>
+                                                <RowDefinition Height="5"/>
+                                                <RowDefinition Height="3*"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="5*"/>
+                                                <ColumnDefinition Width="5*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <StackLayout  Orientation="Horizontal" VerticalOptions="Center" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                                                    <Frame HorizontalOptions="Start" WidthRequest="40" HeightRequest="40" CornerRadius="30" BackgroundColor="#c3996b" BorderColor="#c3996b" Margin="20,0,0,0" VerticalOptions="Center">
+                                                        <Image Source="rupee.png"  HeightRequest="20" WidthRequest="20">
+                                                            <Image.Behaviors>
+                                                                <toolkit:IconTintColorBehavior TintColor="#48382e"/>
+                                                            </Image.Behaviors>
+                                                        </Image>
+                                                    </Frame>
+
+                                                <Label Text="{Binding ChitSchemeName}" TextColor="white" FontAttributes="Bold" FontSize="18" Padding="0" Margin="20,5,0,0" VerticalOptions="Center"/>
+                                            </StackLayout>
+                                                                           
+                                            <StackLayout Grid.Row="1" Grid.ColumnSpan="2" >
+                                                <BoxView Color="#d9d9d9"   Margin="0"  HeightRequest="2" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" />
+                                            </StackLayout>
+
+                                            <StackLayout Margin="0,0,0,8" Padding="0" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
+                                                <Grid Padding="0" ColumnSpacing="20">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="*"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <Grid Grid.Row="0" Grid.Column="0" RowSpacing="10" ColumnSpacing="10">
                                                         <Grid.RowDefinitions>
-                                                            <RowDefinition Height="Auto"/>
+                                                            <RowDefinition Height="*"/>
+                                                            <RowDefinition Height="*"/>
                                                         </Grid.RowDefinitions>
                                                         <Grid.ColumnDefinitions>
                                                             <ColumnDefinition Width="*"/>
                                                             <ColumnDefinition Width="*"/>
-                                                            <ColumnDefinition Width="*"/>
                                                         </Grid.ColumnDefinitions>
-                                                        <StackLayout Spacing="20">
-                                                            <Label Text="No. Months" 
-                                                       TextColor="white" HorizontalOptions="Center"
-                                                       FontSize="14"/>
-                                                            <Label Text="{Binding NoOfMonths}" 
-                                                       TextColor="white" 
-                                                       FontSize="16"
-                                                       FontAttributes="Bold" HorizontalOptions="Center"
-                                                       Margin="0,0,0,0"/>
-                                                        </StackLayout>
-                                                        <StackLayout Grid.Column="1" Spacing="20">
-                                                            <Label Text="{Binding Title}"
-                                                       TextColor="white" HorizontalOptions="Center"
-                                                       FontSize="14"/>
-                                                            <HorizontalStackLayout HorizontalOptions="Center">
-                                                                <Image Source="rupee.svg"
-                                                               WidthRequest="12"
-                                                               HeightRequest="12">
-                                                                    <Image.Behaviors>
-                                                                        <toolkit:IconTintColorBehavior TintColor="white"/>
-                                                                    </Image.Behaviors>
-                                                                </Image>
-                                                                <Label Text="{Binding MonthlyDue}"
-                                                               TextColor="white" 
-                                                               FontSize="16" 
-                                                               FontAttributes="Bold" />
-                                                            </HorizontalStackLayout>
-                                                        </StackLayout>
-                                                        <StackLayout Grid.Column="2" Spacing="20">
-                                                            <Label Text="Pending Dues" HorizontalOptions="Center"
-                                                       TextColor="white" 
-                                                       FontSize="14" />
 
-                                                            <Label Text="{Binding PendingDues}"
-                                                       FontSize="16" 
-                                                       TextColor="white"  HorizontalOptions="Center"
-                                                       FontAttributes="Bold"
-                                                 
-                                                       Margin="0,0,0,0"/>
-                                                        </StackLayout>
+                                                        <Label Text="No. Months" Grid.Row="0" Grid.Column="0" TextColor="white" HorizontalOptions="Start" VerticalOptions="Center" FontSize="14"/>
+                                                        <Label Text="{Binding NoOfMonths}"  Grid.Row="0" Grid.Column="1" VerticalOptions="Center" TextColor="white" FontSize="16" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,0,0,0"/>
+
+                                                        <Label Text="Pending Dues" HorizontalOptions="Start"  Grid.Row="1" Grid.Column="0" VerticalOptions="Center" TextColor="white" FontSize="14" />
+                                                        <Label Text="{Binding PendingDues}" Grid.Row="1" Grid.Column="1" VerticalOptions="Center" FontSize="16" TextColor="white"  HorizontalOptions="Center" FontAttributes="Bold" Margin="0,0,0,0"/>
+
                                                     </Grid>
 
 
-                                                    <BoxView Color="#d9d9d9"
-                                                 Margin="0,16,0,8"
-                                                 HeightRequest="2"
-                                                 HorizontalOptions="Fill" />
-                                                </StackLayout>
+                                                    <Grid Grid.Row="0" Grid.Column="1" RowSpacing="10" ColumnSpacing="10" VerticalOptions="Center" HorizontalOptions="End">
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="*"/>
+                                                            <RowDefinition Height="*"/>
+                                                        </Grid.RowDefinitions>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                        </Grid.ColumnDefinitions>
 
-                                                <StackLayout Orientation="Horizontal"
-                                                 VerticalOptions="EndAndExpand" 
-                                                 Margin="0,2,0,0">
-                                                    <VerticalStackLayout>
-                                                        <!--<Border Stroke="#1976d2"    
-                                                    StrokeThickness="3" 
-                                                    StrokeShape="Rectangle 40,0,0,40"
-                                                    WidthRequest="120" 
-                                                    HeightRequest="55">-->
-                                                        <Button x:Name="viewBook_Button"
-                                                        Clicked="ViewPassbook"
-                                                        Text="VIEW PASSBOOK"
-                                                        WidthRequest="120"
-                                                        Padding="5"
-                                                        HeightRequest="50"
-                                                        BackgroundColor="#1976d2"
-                                                        TextColor="white" 
-                                                        FontAttributes="Bold" 
-                                                        FontSize="12" />
-                                                        <!--</Border>-->
-                                                    </VerticalStackLayout>
-                                                    <VerticalStackLayout HorizontalOptions="EndAndExpand">
-                                                        <Button Clicked="PayNow" 
-                                                    Text="PAY NOW" 
-                                                    TextColor="White" 
-                                                    WidthRequest="100"
-                                                    HeightRequest="50"
-                                                    FontAttributes="Bold"
-                                                    FontSize="12" 
-                                                    BackgroundColor="#ff9500" />
-                                                    </VerticalStackLayout>
-                                                </StackLayout>
+                                                        <Label Text="{Binding Title}"  Grid.Row="0" Grid.Column="0" VerticalOptions="Center" TextColor="white" HorizontalOptions="StartAndExpand" FontSize="14"/>
+                                                        <Label Text="{Binding MonthlyDue ,StringFormat='₹{0}'}"  Grid.Row="0" Grid.Column="1" Margin="0"  VerticalOptions="Center" HorizontalOptions="Start" TextColor="white" FontSize="16" FontAttributes="Bold" />
+
+                                                        <Label Text="Due Date " HorizontalOptions="StartAndExpand" TextColor="white" FontSize="14"  Grid.Row="1" Grid.Column="0" VerticalOptions="Center"/>
+                                                        <Label Text="{Binding TransactionDate}" FontSize="16"  TextColor="white"  HorizontalOptions="Start" FontAttributes="Bold" Margin="0" Grid.Row="1" Grid.Column="1" VerticalOptions="Center"/>
+
+                                                    </Grid>
+                                                </Grid>
                                             </StackLayout>
-                                        </Frame>
-                                    </HorizontalStackLayout>
+
+                                            <StackLayout Grid.Row="3" Grid.ColumnSpan="2" VerticalOptions="Center" >
+                                                <BoxView Color="#d9d9d9"   Margin="0"  HeightRequest="2" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" />
+                                            </StackLayout>
+
+                                            <StackLayout Grid.Row="4" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start" Margin="0,0,0,0">
+                                                <Button x:Name="viewBook_Button"   Clicked="ViewPassbook" Text="VIEW PASSBOOK"    Margin="5"     BackgroundColor="#1976d2"  TextColor="white"   FontAttributes="Bold"  FontSize="12"/>
+                                            </StackLayout>
+
+                                            <StackLayout Grid.Row="4" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,0,0" >
+                                                <Button Clicked="PayNow"  Text="PAY NOW" TextColor="White"  Margin="5"          FontAttributes="Bold" FontSize="12"  BackgroundColor="#ff9500"/>
+                                            </StackLayout>
+                                        </Grid>
+                                    </Frame>
+                                
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
                         </CollectionView>
