@@ -17,6 +17,13 @@ namespace LJ.ViewModels
             set { SetProperty(ref isBusy, value); }
         }
 
+        bool isLoading = false;
+        public bool IsLoading
+        {
+            get { return isLoading; }
+            set { SetProperty(ref isLoading, value); }
+        }
+
         protected bool SetProperty<T>(ref T backingStore, T value,
              [CallerMemberName] string propertyName = "",
              Action onChanged = null)

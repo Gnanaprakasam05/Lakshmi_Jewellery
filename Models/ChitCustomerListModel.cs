@@ -82,6 +82,12 @@ namespace LJ.Models
         public string SetActive{ get; set; }
 
         [JsonProperty("maturity_date")]
-        public string MaturityDate{ get; set; }
+        public string MaturityDate{ get; set; }  
+        
+        [JsonProperty("chit_due_date")]
+        public string ChitDueDate{ get; set; }   
+        
+        [JsonProperty("disable_pay_now")]
+        public string DisablePayNow{ get; set; }
     }
 }

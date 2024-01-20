@@ -298,3 +298,4 @@ C:\Users\aduser\Desktop\LJ\LJ\obj\Release\net8.0-maccatalyst\maccatalyst-arm64\r
 C:\Users\aduser\Desktop\LJ\LJ\obj\Release\net8.0-maccatalyst\maccatalyst-arm64\LJ.pdb
 C:\Users\aduser\Desktop\LJ\LJ\obj\Release\net8.0-maccatalyst\maccatalyst-arm64\LJ.genruntimeconfig.cache
 C:\Users\aduser\Desktop\LJ\LJ\obj\Release\net8.0-maccatalyst\maccatalyst-arm64\ref\LJ.dll
+C:\Users\aduser\Desktop\LJ\LJ\obj\Release\net8.0-maccatalyst\maccatalyst-arm64\LJ.sourcelink.json

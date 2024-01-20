@@ -99,7 +99,7 @@
                                                         <Label Text="{Binding MonthlyDue ,StringFormat='₹{0}'}"  Grid.Row="0" Grid.Column="1" Margin="0"  VerticalOptions="Center" HorizontalOptions="Start" TextColor="white" FontSize="16" FontAttributes="Bold" />
 
                                                         <Label Text="Due Date " HorizontalOptions="StartAndExpand" TextColor="white" FontSize="14"  Grid.Row="1" Grid.Column="0" VerticalOptions="Center"/>
-                                                        <Label Text="{Binding TransactionDate}" FontSize="16"  TextColor="white"  HorizontalOptions="Start" FontAttributes="Bold" Margin="0" Grid.Row="1" Grid.Column="1" VerticalOptions="Center"/>
+                                                        <Label Text="{Binding ChitDueDate}" FontSize="16"  TextColor="white"  HorizontalOptions="Start" FontAttributes="Bold" Margin="0" Grid.Row="1" Grid.Column="1" VerticalOptions="Center"/>
 
                                                     </Grid>
                                                 </Grid>
@@ -114,13 +114,27 @@
                                             </StackLayout>
 
                                             <StackLayout Grid.Row="4" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,0,0" >
-                                                <Button Clicked="PayNow"  Text="PAY NOW" TextColor="White"  Margin="5"          FontAttributes="Bold" FontSize="12"  BackgroundColor="#ff9500"/>
+                                                <Button Clicked="PayNow" IsVisible="{Binding DisablePayNow}"  Text="PAY NOW" TextColor="White"  Margin="5"          FontAttributes="Bold" FontSize="12"  BackgroundColor="#ff9500"/>
                                             </StackLayout>
                                         </Grid>
                                     </Frame>
                                 
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
+                            <CollectionView.Footer>
+                                <Grid Padding="6" IsVisible="{Binding IsLoading}">
+                                    <!-- set the footer to have a zero height when invisible -->
+                                    <Grid.Triggers>
+                                        <Trigger TargetType="Grid" Property="IsVisible" Value="False">
+                                            <Setter Property="HeightRequest" Value="0" />
+                                        </Trigger>
+                                    </Grid.Triggers>
+                                    <!-- the loading content -->
+                                    <!--<Label Text="Loading..." TextColor="Gray" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" />-->
+
+                                    <ActivityIndicator IsRunning="{Binding IsLoading}"  Color="#48382e" />
+                                </Grid>
+                            </CollectionView.Footer>
                         </CollectionView>
                     </StackLayout>
                 </Grid>

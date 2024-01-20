@@ -2,6 +2,7 @@
 using LJ.Models;
 using LJ.Services;
 using LJ.ViewModels;
+using Microsoft.Maui;
 using Microsoft.Maui.Controls;
 using System.Diagnostics;
 using Index = LJ.Models.Index;
@@ -24,7 +25,8 @@ public partial class HomePage : ContentPage
         BindingContext = viewModel = new HomeViewModel(httpServices);
          
     }
-
+    private DateTime lastTapTime = DateTime.MinValue;
+    private bool isProcessing = false;
 
     protected override void OnAppearing()
     {
@@ -69,28 +71,79 @@ public partial class HomePage : ContentPage
 
     private async void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
     {
-        var button = (Frame)sender;
-        var view = (Index)button.BindingContext;
-        await Navigation.PushAsync(new MyRelationPage(view.Id,httpServices));
+
+        if (isProcessing)
+            return;
+
+        try
+        {
+            isProcessing = true;
+
+            DateTime now = DateTime.Now;
+            TimeSpan elapsed = now - lastTapTime;
+
+            if (elapsed < TimeSpan.FromMilliseconds(300))
+            {
+
+                var button = (Frame)sender;
+                var view = (Index)button.BindingContext;
+                await Navigation.PushAsync(new MyRelationPage(view.Id, httpServices));
+            }
+            else
+            {
+                var button = (Frame)sender;
+                var view = (Index)button.BindingContext;
+                await Navigation.PushAsync(new MyRelationPage(view.Id, httpServices));
+            }
+
+            lastTapTime = now;
+        }
+        finally
+        {
+            isProcessing = false;
+        }
+        
     }
-    private async void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+ 
+    private async void CustomChitSelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
 
-        //var selectedItem = e.CurrentSelection as Index;
-        //if (e.CurrentSelection != null)
-        //{
-        //    // Get the selected item
-        //    var selectedItem = e.CurrentSelection as Index;
+      
+        var view = ((CollectionView)sender).SelectedItem as CustomerChitList;
 
-        //    // Perform navigation or any other action based on the selected item
-        //    Navigation.PushAsync(new MyRelationPage(selectedItem.Id , httpServices));
+        if (view == null)
+            return;
 
-        //    // Clear the selection
-        //    selectedItem = null;
-        //}
-        //else
-        //{
-        //    return;
-        //}
+        if (isProcessing)
+            return;
+
+        try
+        {
+            isProcessing = true;
+
+            DateTime now = DateTime.Now;
+            TimeSpan elapsed = now - lastTapTime;
+
+            if (elapsed < TimeSpan.FromMilliseconds(300))
+            {
+
+                await Navigation.PushAsync(new MyRelationPage(view.CustomerId, httpServices));
+            }
+            else
+            {
+                await Navigation.PushAsync(new MyRelationPage(view.CustomerId, httpServices));
+            }
+
+            lastTapTime = now;
+        }
+        finally
+        {
+            isProcessing = false;
+        }
+
+        ((CollectionView)sender).SelectedItem = null;
+
+
+        //await Navigation.PushAsync(new MyRelationPage(view.CustomerId, httpServices));
     }
 }

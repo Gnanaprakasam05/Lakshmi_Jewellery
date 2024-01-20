@@ -213,6 +213,11 @@ namespace LJ.ViewModels
                                         DueNo = data.DueNo,
                                         PaidAmount = data.PaidAmount,
                                         DueDate = DateFormate1,
+
+                                        ChitSchemeId = data.ChitSchemeId,
+                                        CollectionId = data.CollectionId,
+                                        CustomerId = data.CustomerId,
+                                        Id = data.Id,
                                     });
                                 }
                             }

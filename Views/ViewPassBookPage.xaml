@@ -25,48 +25,18 @@
                                 <StackLayout>
                                     <HorizontalStackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                                         <VerticalStackLayout Spacing="5" >
-                                            <Label Text="Name"
-                                                       TextColor="white" 
-                                                       FontSize="15"
-                                                       FontAttributes="Bold"/>
-                                            <Label Text="Code"
-                                                       TextColor="white"
-                                                       FontSize="15" 
-                                                       FontAttributes="Bold"/>
-                                            <Label Text="Scheme Name"
-                                                       TextColor="white" 
-                                                       FontSize="15" 
-                                                       FontAttributes="Bold"/>
-                                            <Label Text="Joining Date"
-                                                       TextColor="white" 
-                                                       FontSize="15" 
-                                                       FontAttributes="Bold"/>
-                                            <Label Text="Maturity Date"
-                                                       TextColor="white" 
-                                                       FontSize="15" 
-                                                       FontAttributes="Bold"/>
+                                            <Label Text="Name" TextColor="white" FontSize="15" FontAttributes="Bold"/>
+                                            <Label Text="Code" TextColor="white" FontSize="15" FontAttributes="Bold"/>
+                                            <Label Text="Scheme Name" TextColor="white"  FontSize="15"  FontAttributes="Bold"/>
+                                            <Label Text="Joining Date" TextColor="white" FontSize="15"  FontAttributes="Bold"/>
+                                            <Label Text="Maturity Date" TextColor="white" FontSize="15" FontAttributes="Bold"/>
                                         </VerticalStackLayout>
                                         <VerticalStackLayout Spacing="5" Margin="5,0,0,0">
-                                            <Label Text=":" 
-                                                       TextColor="white"
-                                                       FontSize="15"
-                                                       FontAttributes="Bold"/>
-                                            <Label Text=":" 
-                                                       TextColor="white"
-                                                       FontSize="15"
-                                                       FontAttributes="Bold"/>
-                                            <Label Text=":" 
-                                                       TextColor="white"
-                                                       FontSize="15"
-                                                       FontAttributes="Bold"/>
-                                            <Label Text=":" 
-                                                       TextColor="white"
-                                                       FontSize="15"
-                                                       FontAttributes="Bold"/>
-                                            <Label Text=":" 
-                                                       TextColor="white"
-                                                       FontSize="15"
-                                                       FontAttributes="Bold"/>
+                                            <Label Text=":" TextColor="white"  FontSize="15" FontAttributes="Bold"/>
+                                            <Label Text=":" TextColor="white" FontSize="15" FontAttributes="Bold"/>
+                                            <Label Text=":" TextColor="white" FontSize="15" FontAttributes="Bold"/>
+                                            <Label Text=":" TextColor="white" FontSize="15" FontAttributes="Bold"/>
+                                            <Label Text=":" TextColor="white" FontSize="15" FontAttributes="Bold"/>
                                         </VerticalStackLayout>
                                         <VerticalStackLayout Spacing="5" Margin="5,0,0,0">
                                             <Label Text="{Binding Name}"

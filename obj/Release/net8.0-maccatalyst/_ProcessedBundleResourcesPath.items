@@ -1,20 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <BundleResource Include="C:\Users\aduser\Desktop\LJ\LJ\obj\Release\net8.0-maccatalyst\resizetizer\r\Resources\pattern3.png" />
-    <BundleResource Include="C:\Users\aduser\Desktop\LJ\LJ\obj\Release\net8.0-maccatalyst\resizetizer\r\dotnet_bot@3x.png" />
-    <BundleResource Include="C:\Users\aduser\Desktop\LJ\LJ\obj\Release\net8.0-maccatalyst\resizetizer\r\dotnet_bot@2x.png" />
-    <BundleResource Include="C:\Users\aduser\Desktop\LJ\LJ\obj\Release\net8.0-maccatalyst\resizetizer\r\dotnet_bot.png" />
-    <BundleResource Include="C:\Users\aduser\Desktop\LJ\LJ\obj\Release\net8.0-maccatalyst\resizetizer\r\Resources\pattern.png" />
-    <BundleResource Include="C:\Users\aduser\Desktop\LJ\LJ\obj\Release\net8.0-maccatalyst\resizetizer\r\Resources\house.png" />
-    <BundleResource Include="C:\Users\aduser\Desktop\LJ\LJ\obj\Release\net8.0-maccatalyst\resizetizer\r\Resources\lj.png" />
-    <BundleResource Include="C:\Users\aduser\Desktop\LJ\LJ\obj\Release\net8.0-maccatalyst\resizetizer\r\Resources\pattern1.png" />
-    <BundleResource Include="C:\Users\aduser\Desktop\LJ\LJ\obj\Release\net8.0-maccatalyst\resizetizer\r\Resources\pattern2.png" />
-    <BundleResource Include="C:\Users\aduser\Desktop\LJ\LJ\obj\Release\net8.0-maccatalyst\resizetizer\r\Resources\rupee.png" />
-    <BundleResource Include="C:\Users\aduser\Desktop\LJ\LJ\obj\Release\net8.0-maccatalyst\resizetizer\r\Resources\setting.png" />
-    <BundleResource Include="C:\Users\aduser\Desktop\LJ\LJ\obj\Release\net8.0-maccatalyst\resizetizer\r\Resources\user.png" />
-    <BundleResource Include="C:\Users\aduser\Desktop\LJ\LJ\obj\Release\net8.0-maccatalyst\resizetizer\r\Resources\poweroff.png" />
-    <BundleResource Include="obj\Release\net8.0-maccatalyst\resizetizer\f\OpenSans-Regular.ttf" />
-    <BundleResource Include="obj\Release\net8.0-maccatalyst\resizetizer\f\OpenSans-Semibold.ttf" />
+    <BundleResource Include="obj\Release\net8.0-maccatalyst\resizetizer\f\MauiInfo.plist" />
   </ItemGroup>
 </Project>

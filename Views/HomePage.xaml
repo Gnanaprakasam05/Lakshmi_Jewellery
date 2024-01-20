@@ -6,6 +6,8 @@
              xmlns:model ="clr-namespace:LJ.Models"
              Title="Home">
 
+    
+    
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add item" Clicked="LogoutNavigation"
                      IconImageSource="poweroff.png" />
@@ -60,15 +62,23 @@
                                                             HeightRequest="2"
                                                             HorizontalOptions="Fill" />
 
-                                                    <Frame Padding="0" Margin="0,15,0,0" CornerRadius="0" BackgroundColor="#48382e" BorderColor="#48382e">
-                                                        <Frame.GestureRecognizers>
-                                                            <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped"/>
-                                                        </Frame.GestureRecognizers>
-                                                        <CollectionView ItemsSource="{Binding CustomerChitList}" ItemsLayout="VerticalGrid,1"   x:Name="Custom_List" SelectionMode="None"  SelectionChanged="CollectionView_SelectionChanged">
+                                               
+                                                        <CollectionView ItemsSource="{Binding CustomerChitList}" Margin="0,15,0,0" ItemsLayout="VerticalGrid,1" x:Name="CustomChitSelect" SelectionMode="Single" SelectionChanged="CustomChitSelect_SelectionChanged">
                                                             <CollectionView.ItemTemplate>
                                                                 <DataTemplate x:DataType="model:CustomerChitList">
                                                                     <Grid ColumnSpacing="5" RowSpacing="8">
-                                                                        <Grid.RowDefinitions>
+                                                                    <VisualStateManager.VisualStateGroups>
+                                                                        <VisualStateGroup Name="CommonStates">
+                                                                            <VisualState Name="Normal" />
+                                                                            <VisualState Name="Selected">
+                                                                                <VisualState.Setters>
+                                                                                    <Setter Property="BackgroundColor" Value="Transparent" />
+                                                                                </VisualState.Setters>
+                                                                            </VisualState>
+                                                                        </VisualStateGroup>
+                                                                    </VisualStateManager.VisualStateGroups>
+
+                                                                    <Grid.RowDefinitions>
                                                                             <RowDefinition Height="*"/>
                                                                         </Grid.RowDefinitions>
                                                                         <Grid.ColumnDefinitions>
@@ -104,8 +114,7 @@
                                                             </CollectionView.ItemTemplate>
                                                         </CollectionView>
 
-                                                      
-                                                    </Frame>
+                                                 
                                                 </StackLayout>
 
                                                
@@ -120,7 +129,7 @@
                             </CollectionView.ItemTemplate>
 
                             <CollectionView.Footer>
-                                <Grid Padding="6" IsVisible="{Binding IsBusy}">
+                                <Grid Padding="6" IsVisible="{Binding IsLoading}">
                                     <!-- set the footer to have a zero height when invisible -->
                                     <Grid.Triggers>
                                         <Trigger TargetType="Grid" Property="IsVisible" Value="False">
@@ -130,7 +139,7 @@
                                     <!-- the loading content -->
                                     <!--<Label Text="Loading..." TextColor="Gray" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" />-->
 
-                                    <ActivityIndicator IsRunning="{Binding IsBusy}"  Color="Orange" />
+                                    <ActivityIndicator IsRunning="{Binding IsLoading}"  Color="#48382e" />
                                 </Grid>
                             </CollectionView.Footer>
                         </CollectionView>

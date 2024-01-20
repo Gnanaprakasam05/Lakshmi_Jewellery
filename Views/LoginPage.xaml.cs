@@ -21,8 +21,14 @@ public partial class LoginPage : ContentPage
         httpServices = _httpServices;
 
         Loaded += PhoneNumber_Loaded;
-
     }
+
+    //protected override void OnAppearing()
+    //{
+    //    base.OnAppearing();
+
+    //    Loaded += PhoneNumber_Loaded;
+    //}
     private void PhoneNumber_Loaded(object sender, EventArgs e)
     {
         txtPhoneNumber.Focus();

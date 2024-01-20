@@ -476,3 +476,4 @@ C:\Users\aduser\Desktop\LJ\LJ\obj\Release\net8.0-android\stamp\_ConvertResources
 C:\Users\aduser\Desktop\LJ\LJ\obj\Release\net8.0-android\stamp\_GenerateJavaStubs.stamp
 C:\Users\aduser\Desktop\LJ\LJ\obj\Release\net8.0-android\stamp\_GeneratePackageManagerJava.stamp
 C:\Users\aduser\Desktop\LJ\LJ\obj\Release\net8.0-android\stamp\_ResolveLibraryProjectImports.stamp
+C:\Users\aduser\Desktop\LJ\LJ\obj\Release\net8.0-android\LJ.sourcelink.json

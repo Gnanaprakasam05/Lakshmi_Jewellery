@@ -35,7 +35,7 @@
                                                                     MaxLength="10"
                                                                     FontAttributes="Bold"
                                                                     TextColor="Black" 
-                                                                Focused="txtEntryFocused" 
+                                                                    Focused="txtEntryFocused" 
                                                                     Unfocused="txtEntry_UnFocused"
                                                                     Keyboard="Telephone" 
                                                                     Margin="5,8,5,0"/>

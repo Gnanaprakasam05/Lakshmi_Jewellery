@@ -22,9 +22,9 @@ public partial class RazorPayPage : ContentPage
     private static string currency { get; set; }
     private static string receipt { get; set; }
 
-    private static string apiKey = "rzp_test_Gyt3Usf1nNi9Rr";
+    private static string apiKey = "rzp_test_AtIhzqYIY2cuKO";
 
-    private static string apiSecret = "alnHJbZrsnM9IPUl1SsrNEza";
+    private static string apiSecret = "ZGGY3wo0msV27KYNByhuAZ33";
 
     private static string email = Preferences.Get("Email", string.Empty);
 
@@ -230,6 +230,10 @@ window.location.href = urlName;
         var jsonResult = await request.Content.ReadAsStringAsync();
         var result = JsonConvert.DeserializeObject<RazorpayModel>(jsonResult);
 
+        int AmountConver = Convert.ToInt32(result.Amount);
+
+        result.Amount = (AmountConver / 100).ToString();
+
         Preferences.Set("ResultID", result.Id);
         Preferences.Set("Amount", result.Amount);
         Preferences.Set("Currency", result.Currency);
@@ -241,12 +245,12 @@ window.location.href = urlName;
         string SendName = Preferences.Get("CustomerName", string.Empty);
         string Amount = Preferences.Get("Amount", string.Empty);
         string Email = Preferences.Get("Email", string.Empty); ;
-        string key = "rzp_test_Gyt3Usf1nNi9Rr";
+        string key = "rzp_test_AtIhzqYIY2cuKO";
         string order_id = Preferences.Get("ResultID", string.Empty);
         string Currency = Preferences.Get("Currency", string.Empty);
         string Mobile = Preferences.Get("Mobile", string.Empty);
         var Status = Preferences.Get("Status", string.Empty);
-        string ApiSecret = "alnHJbZrsnM9IPUl1SsrNEza";
+        string ApiSecret = "ZGGY3wo0msV27KYNByhuAZ33";
         // Execute JavaScript function in the WebView
 
 

@@ -93,7 +93,10 @@ namespace LJ.Models
         public string IsArchive{ get; set; }
 
         [JsonProperty("setActive")]
-        public string SetActive { get; set; }
+        public string SetActive { get; set; }  
+        
+        //[JsonProperty("customer_id")]
+        //public string CustomerId { get; set; }
         public string Letter { get; set; }
 
 
@@ -110,7 +113,13 @@ namespace LJ.Models
         public string DueDate { get; set; }   
 
         [JsonProperty("paid_amount")]
-        public string PaidAmount { get; set; }
+        public string PaidAmount { get; set; }  
+        
+        [JsonProperty("customer_id")]
+        public string CustomerId { get; set; }  
+        
+        [JsonProperty("scheme_based")]
+        public string ScameBased { get; set; }
     }
 
 }

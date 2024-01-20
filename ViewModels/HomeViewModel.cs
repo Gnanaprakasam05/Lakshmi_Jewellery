@@ -151,6 +151,10 @@ namespace LJ.ViewModels
         }
         public async void GetCustomerList()
         {
+            if (IsLoading)
+                return;
+
+            IsLoading = true;
           
             string MobileNumber = Preferences.Get("MobileNumber", "");
 
@@ -189,15 +193,25 @@ namespace LJ.ViewModels
                         {
 
                             for(int i = 0; i < data.CustomerChitList.Count; i++)
-                           {
+                            {
 
                                 DateTime date1 = DateTime.Parse(data.CustomerChitList[i].DueDate);
                                 var DueDate = date1.ToString("dd-MM-yyyy");
             
                                 data.CustomerChitList[i].DueDate = DueDate;
                             
-                                string modifiedString = RemoveDecimalValues(data.CustomerChitList[i].PaidAmount);
-                                data.CustomerChitList[i].PaidAmount =modifiedString;
+                                if (data.CustomerChitList[i].ScameBased == "2")
+                                {
+                                    data.CustomerChitList[i].PaidAmount = data.CustomerChitList[i].PaidAmount + "grms";
+                                }
+                                else
+                                {
+                                    string modifiedString = RemoveDecimalValues(data.CustomerChitList[i].PaidAmount);
+                                    data.CustomerChitList[i].PaidAmount = modifiedString;
+                                }
+
+
+
                             }
 
 
@@ -228,8 +242,9 @@ namespace LJ.ViewModels
             }
             finally
             {
-             
+                IsLoading = false;
             }
+
             static string RemoveDecimalValues(string input)
             {
                 int decimalIndex = input.IndexOf('.');

@@ -30,5 +30,9 @@ namespace LJ.Models
         public string PendingDues { get; set; }
         public string SetActive { get; set; }
         public string MaturityDate { get; set; }
+
+
+        public bool DisablePayNow { get; set; }
+        public string ChitDueDate { get; set; }
     }
 }

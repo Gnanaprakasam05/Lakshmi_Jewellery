@@ -1,8 +1,10 @@
-﻿using LJ.Models;
+﻿using CommunityToolkit.Maui.Alerts;
+using LJ.Models;
 using LJ.Services;
 using Microsoft.VisualBasic;
 using Newtonsoft.Json;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Net.Http.Headers;
 using System.Windows.Input;
 
@@ -45,7 +47,18 @@ namespace LJ.ViewModels
 
             httpServices = _httpServices;
         }
+        public async void NetworkError()
+        {
+            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+            NetworkAccess accessType = Connectivity.Current.NetworkAccess;
 
+            if (accessType != NetworkAccess.Internet)
+
+            {
+                var toast = Toast.Make("No Internet Connection");
+                await toast.Show(cancellationTokenSource.Token);
+            }
+        }
         public ICommand RefreshData => new Command(async () =>
         {
             IsBusy = true;
@@ -55,8 +68,11 @@ namespace LJ.ViewModels
             IsBusy = false;
         });
       
-        public async void GetChitCustomerViewPassbook()
+        public async Task<ObservableCollection<MyRelationModel>> GetChitCustomerViewPassbook()
         {
+         
+
+            IsLoading = true;
 
             try
             {
@@ -77,6 +93,7 @@ namespace LJ.ViewModels
                                       new KeyValuePair<string,string>("search",ID),
                                        new KeyValuePair<string,string>("searchField",searchField1),
                                        new KeyValuePair<string,string>("show_only_current_chit",show_only_current_chit),
+                                         new KeyValuePair<string,string>("mobile","1"),
                             });
 
                     var httpClient = httpServices.HttpClient;
@@ -87,6 +104,10 @@ namespace LJ.ViewModels
 
                     foreach (var data in Result.Index)
                     {
+
+                        DateTime date1 = DateTime.Parse(data.ChitDueDate);
+                        var chit_due_date = date1.ToString("dd-MM-yyyy");
+
                         if (data.MonthlyDue == "0")
                         {
                             RelationData.Add(new MyRelationModel
@@ -112,7 +133,12 @@ namespace LJ.ViewModels
                                 SetActive = data.SetActive,
                                 MaturityDate = data.MaturityDate,
 
+
+                                ChitDueDate = chit_due_date,
+
                                 Title = Title1,
+
+                                DisablePayNow = ((data.DisablePayNow == "1") ? false : true),
                             });
 
 
@@ -142,6 +168,9 @@ namespace LJ.ViewModels
                                 MaturityDate = data.MaturityDate,
                                 Title = Title2,
                                 MonthlyDue = data.MonthlyDue,
+
+                                DisablePayNow = ((data.DisablePayNow == "1") ? false : true),
+                                ChitDueDate = chit_due_date,
                             });
 
                         }
@@ -151,33 +180,25 @@ namespace LJ.ViewModels
 
                 catch (Exception ex)
                 {
-
+                    Debug.WriteLine(ex);
                 }
             }
             catch (Exception ex)
             {
-
-
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsLoading = false;
             }
 
-
-
-
-
-
-
-
-
-
-
-
-
-            
-
+            return RelationData;
         }
 
         public async Task<ObservableCollection<Datum>> GetChitCustomerCollectionDueListData( string Relation_ID)
         {
+
+    
 
             try
             {
@@ -195,6 +216,7 @@ namespace LJ.ViewModels
                         var formcontent1 = new FormUrlEncodedContent(new[]
                                       {
                                     new KeyValuePair<string,string>("mobile_no",MobileNumber),
+                                  
 
                             });
                         var httpClient = httpServices.HttpClient;
@@ -236,6 +258,11 @@ namespace LJ.ViewModels
                                         DueNo = data.DueNo,
                                         PaidAmount = data.PaidAmount,
                                         DueDate = data.DueDate,
+
+                                        ChitSchemeId = data.ChitSchemeId,
+                                        CollectionId = data.CollectionId,
+                                        CustomerId = data.CustomerId,
+                                        Id = data.Id,
                                     });
                                 }
                             }
@@ -246,13 +273,14 @@ namespace LJ.ViewModels
 
                 catch (Exception ex)
                 {
-
+                    Debug.WriteLine(ex);
                 }
             }
             catch (Exception ex)
             {
-
+                Debug.WriteLine(ex);
             }
+          
 
             return PayNow;
         }
